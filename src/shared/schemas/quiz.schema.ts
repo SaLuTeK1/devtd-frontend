@@ -19,9 +19,7 @@ export const booleanQuestionSchema = questionBaseSchema.extend({
 
 export const inputQuestionSchema = questionBaseSchema.extend({
 	type: z.literal(QuestionTypeEnum.INPUT),
-	acceptableAnswers: z
-		.array(z.string())
-		.min(1, 'Provide at least one acceptable answer')
+	acceptableAnswers: z.array(z.object({ value: z.string().trim() })).min(1)
 })
 
 export const checkboxQuestionSchema = questionBaseSchema

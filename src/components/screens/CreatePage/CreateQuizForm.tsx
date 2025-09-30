@@ -45,7 +45,7 @@ const CreateQuizForm = () => {
 		if (type === QuestionTypeEnum.BOOLEAN) {
 			append({ type, prompt: '', correctBoolean: false })
 		} else if (type === QuestionTypeEnum.INPUT) {
-			append({ type, prompt: '', acceptableAnswers: [''] })
+			append({ type, prompt: '', acceptableAnswers: [{ value: '' }] })
 		} else {
 			append({ type, prompt: '', options: [] })
 		}
@@ -65,7 +65,9 @@ const CreateQuizForm = () => {
 							: null,
 					acceptableAnswers:
 						q.type === QuestionTypeEnum.INPUT
-							? q.acceptableAnswers.filter(Boolean)
+							? q.acceptableAnswers
+									.map(a => a.value)
+									.filter(Boolean)
 							: null,
 					options:
 						q.type === QuestionTypeEnum.CHECKBOX
@@ -84,8 +86,6 @@ const CreateQuizForm = () => {
 			toast('Failed to create quiz')
 		}
 	}
-
-	console.log(isValid, isValidating, errors)
 
 	return (
 		<FormProvider {...form}>
