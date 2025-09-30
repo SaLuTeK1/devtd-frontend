@@ -10,7 +10,10 @@ import { IQuestion } from '@/shared/interfaces/quiz.interface'
 
 interface QuestionCardProps {
 	question: IQuestion
-	onAnswerChange?: (questionId: string, answer: any) => void
+	onAnswerChange?: (
+		questionId: string,
+		answer: string | string[] | boolean
+	) => void
 	showCorrectAnswer?: boolean
 }
 
@@ -22,7 +25,7 @@ const QuestionCard = ({
 	const { id, prompt, acceptableAnswers, correctBoolean, options, type } =
 		question
 
-	const handleAnswerChange = (answer: any) => {
+	const handleAnswerChange = (answer: string | string[] | boolean) => {
 		onAnswerChange?.(id, answer)
 	}
 

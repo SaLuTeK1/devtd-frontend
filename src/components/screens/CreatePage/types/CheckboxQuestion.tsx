@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Control, useFieldArray, useFormContext } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
@@ -51,7 +51,7 @@ const CheckboxQuestion: React.FC<Props> = ({ control, index }) => {
 				formState.errors?.questions?.[index]?.options && (
 					<span className='text-red-600 text-sm'>
 						{String(
-							(formState.errors.questions as any)[index]?.options
+							formState.errors.questions[index]?.options
 								?.message ?? 'Invalid options'
 						)}
 					</span>
